@@ -101,31 +101,29 @@ public class IniciativasService {
      * @throws RuntimeException Caso o Resultado Chave associado não seja encontrado soltará a frase: ("Objetivo não encontrado com o ID fornecido").
      */
     public void atualizarById(long id_iniciativas, CreateIniciativasDTO dto) {
-        Optional<Iniciativas> iniciativa = iniciativasRepository.findById(id_iniciativas);
-        Optional<ResultadosChave> krOptional = resultadosChaveRepository.findById(dto.getResultadosChaveId());
+        Optional<Iniciativas> iniciativaOptional = iniciativasRepository.findById(id_iniciativas);
 
-        if (iniciativa.isPresent()) {
-            Iniciativas iniciativaExistente = iniciativa.get();
+        Iniciativas iniciativaExistente = iniciativaOptional.get();
+        iniciativaExistente.setTitulo(dto.getTitulo());
+        iniciativaExistente.setDescricao(dto.getDescricao());
+        iniciativaExistente.setPorcentagem_conclusao_iniciativa(dto.getPorcentagem());
+
+        // Aqui você só tenta buscar o Resultado-Chave se o ID for diferente de null
+        if (dto.getResultadosChaveId() != null) {
+            Optional<ResultadosChave> krOptional = resultadosChaveRepository.findById(dto.getResultadosChaveId());
+
             ResultadosChave kr = krOptional.get();
 
-            iniciativaExistente.setTitulo(dto.getTitulo());
-            iniciativaExistente.setDescricao(dto.getDescricao());
-            iniciativaExistente.setPorcentagem_conclusao_iniciativa(dto.getPorcentagem());
+            iniciativaExistente.setResultadosChave(kr);
 
-            if (dto.getResultadosChaveId() != null) {
-                if (krOptional.isPresent()) {              
-                    iniciativaExistente.setResultadosChave(kr);                 
-                } else {
-                    throw new RuntimeException("Objetivo não encontrado com o ID fornecido");
-                }
-            }
-            if (kr.getIniciativas().isEmpty()){
+            if (kr.getIniciativas().isEmpty()) {
                 kr.setPorcentagem_conclusao_kr(0.0);
             }
+
             kr.atualizarPorcentagemConclusaoKR();
             resultadosChaveRepository.save(kr);
-
-            iniciativasRepository.save(iniciativaExistente);
         }
+
+        iniciativasRepository.save(iniciativaExistente);
     }
 }
