@@ -6,7 +6,8 @@ export default function Menu() {
   return (
     <header>
       <div className="container">
-          <Link href="/" className="titulo">
+        {/* Título */}
+        <Link href="/" className="titulo">
           <h1 className="tituloTexto">GESTÃO DE OKRS</h1>
         </Link>
 
