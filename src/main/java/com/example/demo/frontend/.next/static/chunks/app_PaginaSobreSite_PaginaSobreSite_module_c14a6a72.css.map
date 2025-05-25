@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 1, "column": 0}, "map": {"version":3,"sources":["file://C%3A/Users/Caio%20Carames/OneDrive/Desktop/JAVA-TRABALHO/sandbox%20_meu/app/PaginaSobreSite/PaginaSobreSite.module.css"],"sourcesContent":[".tit {\n  text-align: center;\n  font-family: Arial, Helvetica, sans-serif;\n  margin: 0;\n}\n.texto {\n  position: absolute;\n  right: 30%;\n  width: 750px;\n  font-family: Arial, Helvetica, sans-serif;\n  font-size: large;\n  text-align: justify;\n  line-height: 40px;\n}\n"],"names":[],"mappings":"AAAA;;;;;;AAKA","debugId":null}},
-    {"offset": {"line": 16, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}}]
-}
