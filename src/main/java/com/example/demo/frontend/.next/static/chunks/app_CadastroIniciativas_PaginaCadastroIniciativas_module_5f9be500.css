@@ -1,0 +1,54 @@
+/* [project]/app/CadastroIniciativas/PaginaCadastroIniciativas.module.css [app-client] (css) */
+.PaginaCadastroIniciativas-module__CQ38na__iniciativas {
+  text-align: center;
+}
+
+.PaginaCadastroIniciativas-module__CQ38na__formulario {
+  background-color: #f9f9f9;
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 400px;
+  margin: 40px auto;
+  box-shadow: 0 4px 10px #0000001a;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.PaginaCadastroIniciativas-module__CQ38na__titulo {
+  font-size: 1.5rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.PaginaCadastroIniciativas-module__CQ38na__input {
+  padding: .8rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border .3s;
+}
+
+.PaginaCadastroIniciativas-module__CQ38na__input:focus {
+  border-color: #0070f3;
+  outline: none;
+}
+
+.PaginaCadastroIniciativas-module__CQ38na__botao {
+  background-color: #0070f3;
+  color: #fff;
+  padding: .9rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color .3s;
+}
+
+.PaginaCadastroIniciativas-module__CQ38na__botao:hover {
+  background-color: #005ec4;
+}
+
+
+/*# sourceMappingURL=app_CadastroIniciativas_PaginaCadastroIniciativas_module_5f9be500.css.map*/

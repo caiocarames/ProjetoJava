@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 1, "column": 0}, "map": {"version":3,"sources":["turbopack:///[project]/app/AtualizarObjetivos/PaginaAtualizarObjetivos.module.css"],"sourcesContent":[".objetivos{\n  text-align: center;\n}\n.formulario {\n  background-color: #f9f9f9;\n  padding: 2rem;\n  border-radius: 12px;\n  max-width: 400px;\n  margin: 40px auto;\n  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);\n  display: flex;\n  flex-direction: column;\n  gap: 1rem;\n}\n\n.titulo {\n  font-size: 1.5rem;\n  text-align: center;\n  margin-bottom: 1rem;\n  color: #333;\n}\n\n\n.input {\n  padding: 0.8rem 1rem;\n  border: 1px solid #ccc;\n  border-radius: 8px;\n  font-size: 1rem;\n  transition: border 0.3s;\n}\n\n.input:focus {\n  border-color: #0070f3;\n  outline: none;\n}\n\n.botao {\n  background-color: #0070f3;\n  color: white;\n  padding: 0.9rem;\n  border: none;\n  border-radius: 8px;\n  font-size: 1rem;\n  cursor: pointer;\n  transition: background-color 0.3s;\n}\n\n.botao:hover {\n  background-color: #005ec4;\n}\n"],"names":[],"mappings":"AAAA;;;;AAGA;;;;;;;;;;;;AAYA;;;;;;;AAQA;;;;;;;;AAQA;;;;;AAKA;;;;;;;;;;;AAWA"}},
+    {"offset": {"line": 51, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}}]
+}

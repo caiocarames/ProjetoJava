@@ -1,0 +1,54 @@
+/* [project]/app/AtualizarObjetivos/PaginaAtualizarObjetivos.module.css [app-client] (css) */
+.PaginaAtualizarObjetivos-module__l6S5pG__objetivos {
+  text-align: center;
+}
+
+.PaginaAtualizarObjetivos-module__l6S5pG__formulario {
+  background-color: #f9f9f9;
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 400px;
+  margin: 40px auto;
+  box-shadow: 0 4px 10px #0000001a;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.PaginaAtualizarObjetivos-module__l6S5pG__titulo {
+  font-size: 1.5rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.PaginaAtualizarObjetivos-module__l6S5pG__input {
+  padding: .8rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border .3s;
+}
+
+.PaginaAtualizarObjetivos-module__l6S5pG__input:focus {
+  border-color: #0070f3;
+  outline: none;
+}
+
+.PaginaAtualizarObjetivos-module__l6S5pG__botao {
+  background-color: #0070f3;
+  color: #fff;
+  padding: .9rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color .3s;
+}
+
+.PaginaAtualizarObjetivos-module__l6S5pG__botao:hover {
+  background-color: #005ec4;
+}
+
+
+/*# sourceMappingURL=app_AtualizarObjetivos_PaginaAtualizarObjetivos_module_00c17678.css.map*/
