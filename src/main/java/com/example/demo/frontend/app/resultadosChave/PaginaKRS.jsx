@@ -75,74 +75,70 @@ export default function PaginaKRS() {
 
   return (
     <div className="fundo">
-      <h1 className={styles.KRS}>Resultados Chave</h1>
-      <Link href="/CadastroKRS">
-        <button className={styles.add_button}>+</button>
-      </Link>
-      <strong>
-        <p className={styles.add_obj}>Adicionar Resultado Chave</p>
-      </strong>
-
-      {/*KR 1*/}
-      {resultadosChave.filter(resultadosChave => selectedId === "Todos" || resultadosChave.id_kr === Number(selectedId)).map((resultadosChave) => (
-      <div className={styles.card}>
-        <div className={styles.header}>
-          <div className={styles.buttons}>
-            <Link href="/AtualizarKRS">
-              {" "}
-              <button>Editar</button>
-            </Link>
-            <button onClick={() => chamarAPIDeleteResultadosChave(resultadosChave.id_kr)}>Excluir</button>
-          </div>
-        </div>
-
-        <div className={styles.kr}>
-          <strong>ID:</strong>{resultadosChave.id_kr}
-          <div className={styles.kr_titulo}>
-            {resultadosChave.descricao} <span> {resultadosChave.meta}</span>{" "}
-            <span className={styles.porcentagem_kr}>{resultadosChave.porcentagem_conclusao_kr}%</span>
-          </div>
-
-          <div className={styles.progress_bar_kr}>
-            <div className={styles.progress} style={{ width: `${resultadosChave.porcentagem_conclusao_kr}%` }}></div>
-          </div>
-          {/* Map para Cada Iniciativa de cada KR */}
-          <ul className={styles.lista_bola}>
-             {resultadosChave.iniciativas.map((iniciativa) => (
-              <li className={styles.lista_num}>
-              <p className={styles.ini_titulo}>-{iniciativa.titulo}</p>
-              <span className={styles.porcentagem_ini}>{iniciativa.porcentagem_conclusao_iniciativa}%</span>
-              {/* Campo adicional para desassociar uma iniciativa */}
-              <div className={styles.button_desa}>
-                <button onClick={() => chamarAPIDesassociarIni(resultadosChave.id_kr, iniciativa.id_iniciativas)}>Desassociar</button>
+      <div className={styles.pageWrapper}>
+  <div className={styles.tituloArea}>
+    <h1 className={styles.KRS}>Resultados Chave</h1>
+  </div>
+  <div className={styles.areaConteudo}>
+    <div className={styles.filtroContainer}>
+      <label htmlFor="filtro" className={styles.filtroTitulo}>Filtrar por ID:</label>
+      <select
+        id="filtro"
+        name="resultadosChave"
+        onChange={filtragem}
+        value={selectedId}
+        className={styles.select}
+      >
+        <option key="Todos" value="Todos">Todos</option>
+        {resultadosChave.map((kr) => (
+          <option key={kr.id_kr} value={kr.id_kr}>{kr.id_kr}</option>
+        ))}
+      </select>
+    </div>
+    <div className={styles.cardsColuna}>
+      {resultadosChave
+        .filter(kr => selectedId === "Todos" || kr.id_kr === Number(selectedId))
+        .map((kr) => (
+          <div className={styles.card} key={kr.id_kr}>
+            <div className={styles.header}>
+              <div className={styles.buttons}>
+                <Link href="/AtualizarKRS"><button>Editar</button></Link>
+                <button onClick={() => chamarAPIDeleteResultadosChave(kr.id_kr)}>Excluir</button>
               </div>
-              <div className={styles.progress_bar_ini}>
-                <div className={styles.progress} style={{ width: `${iniciativa.porcentagem_conclusao_iniciativa}%` }}></div>
-              </div>
-              </li>
+            </div>
+            <div className={styles.idBox}>
+              <span className={styles.idLabel}>ID:</span>
+              <span className={styles.idValue}>{kr.id_kr}</span>
+            </div>
+            <div className={styles.kr_titulo}>
+              {kr.descricao} <span> {kr.meta}</span>{" "}
+              <span className={styles.porcentagem_kr}>{kr.porcentagem_conclusao_kr}%</span>
+            </div>
+            <div className={styles.progress_bar_kr}>
+              <div className={styles.progress} style={{ width: `${kr.porcentagem_conclusao_kr}%` }}></div>
+            </div>
+            <ul className={styles.lista_bola}>
+              {kr.iniciativas.map((iniciativa) => (
+                <li className={styles.lista_num} key={iniciativa.id_iniciativas}>
+                  <p className={styles.ini_titulo}>-{iniciativa.titulo}</p>
+                  <span className={styles.porcentagem_ini}>{iniciativa.porcentagem_conclusao_iniciativa}%</span>
+                  <div className={styles.button_desa}>
+                    <button onClick={() => chamarAPIDesassociarIni(kr.id_kr, iniciativa.id_iniciativas)}>Desassociar</button>
+                  </div>
+                  <div className={styles.progress_bar_ini}>
+                    <div className={styles.progress} style={{ width: `${iniciativa.porcentagem_conclusao_iniciativa}%` }}></div>
+                  </div>
+                </li>
               ))}
-          </ul>
-        </div>
-      </div>
-      ))}
-      {/* Filtragem */}
-      <div className={styles.filtroContainer}>
-        <h3 className={styles.filtroTitulo}>Filtrar por ID</h3>
-        <select
-          id="filtro"
-          name="resultadosChave"
-          onChange={filtragem}
-          value={selectedId}
-          className={styles.select}
-        >
-          <option key="Todos" value="Todos">Todos</option>
-          {resultadosChave.map((resultadosChave) => (
-            <option key={resultadosChave.id_kr} value={resultadosChave.id_kr}>
-              {resultadosChave.id_kr}
-            </option>
-          ))}
-        </select>
-      </div>
+            </ul>
+          </div>
+        ))}
+    </div>
+    <Link href="/CadastroKRS">
+      <button className={styles.add_button} title="Adicionar Resultado Chave">+</button>
+    </Link>
+  </div>
+</div>
     </div>
   );
 }

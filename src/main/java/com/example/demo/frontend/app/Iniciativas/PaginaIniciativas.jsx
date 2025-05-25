@@ -57,59 +57,63 @@ export default function PaginaIniciativas() {
 
   return (
     <div className="fundo">
-      <h1 className={styles.iniciativas}>Iniciativas</h1>
-      <Link href="/CadastroIniciativas">
-        <button className={styles.add_button}>+</button>
-      </Link>
-      <strong>
-        <p className={styles.add_ini}>Adicionar Iniciativas</p>
-      </strong>
-
-      {/*Iniciativas*/}
-      {iniciativas.filter(iniciativa => selectedId === "Todos" || iniciativa.id_iniciativas === Number(selectedId)).map((iniciativa) => (
-      <div className={styles.card}>
-        <div className={styles.header}>
-          <div className={styles.buttons}>
-            <Link href="/AtualizarIniciativas">
-              <button>Editar</button>
-            </Link>
-            <button onClick={() => chamarAPIDeleteIniciativa(iniciativa.id_iniciativas)}>Excluir</button>
+      <div className={styles.pageWrapper}>
+        <div className={styles.tituloArea}>
+          <h1 className={styles.iniciativas}>Iniciativas</h1>
+        </div>
+        <div className={styles.areaConteudo}>
+          <div className={styles.filtroContainer}>
+            {/* Filtro por ID */}
+            <h3 className={styles.filtroTitulo}>Filtrar por ID:</h3>
+            <select
+              id="filtro"
+              name="iniciativa"
+              onChange={filtragem}
+              value={selectedId}
+              className={styles.select}
+            >
+              <option key="Todos">Todos</option>
+              {iniciativas.map((iniciativa) => (
+                <option key={iniciativa.id_iniciativas}>{iniciativa.id_iniciativas}</option>
+              ))}
+            </select>
           </div>
-        </div>
-        <div className={styles.kr}>
-          <ul className={styles.lista_bola}>
-            <li className={styles.lista_num}>
-              <strong>ID: </strong>{iniciativa.id_iniciativas}
-            </li>
-            <strong>Título: </strong>{iniciativa.titulo}
-            <span className={styles.percentage}>{iniciativa.porcentagem_conclusao_iniciativa} %</span>
-            <div className={styles.progress_bar_ini}>
-              <div className={styles.progress} style={{ width: `${iniciativa.porcentagem_conclusao_iniciativa}%` }}></div>
+          <div className={styles.cardsColuna}>
+            {/* Um card por vez, cada um separado */}
+            {iniciativas.filter(iniciativa => selectedId === "Todos" || iniciativa.id_iniciativas === Number(selectedId)).map((iniciativa) => (
+            <div className={styles.card} key={iniciativa.id_iniciativas}>
+              <div className={styles.header}>
+                <div className={styles.buttons}>
+                  <Link href="/AtualizarIniciativas">
+                    <button>Editar</button>
+                  </Link>
+                  <button onClick={() => chamarAPIDeleteIniciativa(iniciativa.id_iniciativas)}>Excluir</button>
+                </div>
+              </div>
+              <div className={styles.kr}>
+                <ul className={styles.lista_bola}>
+                  <li className={styles.lista_num}>
+                    <span className={styles.idLabel}><strong>ID:<span className={styles.idValue}>{iniciativa.id_iniciativas}</span></strong></span>
+                    
+                  </li>
+                  <strong>Título: </strong>{iniciativa.titulo}
+                  <span className={styles.percentage}>{iniciativa.porcentagem_conclusao_iniciativa} %</span>
+                  <div className={styles.progress_bar_ini}>
+                    <div className={styles.progress} style={{ width: `${iniciativa.porcentagem_conclusao_iniciativa}%` }}></div>
+                  </div>
+                  <strong>Descrição: </strong>{iniciativa.descricao}
+                  <br></br>
+                  <br></br>
+                  <strong>Resultado Chave Id: </strong>{iniciativa.resultadosChaveId}
+                </ul>
+              </div>
             </div>
-            <strong>Descrição: </strong>{iniciativa.descricao}
-            <br></br>
-            <br></br>
-            <strong>Resultado Chave Id: </strong>{iniciativa.resultadosChaveId}
-          </ul>
+            ))}
+          </div>
+          <Link href="/CadastroIniciativas">
+            <button className={styles.add_button} title="Adicionar iniciativa">+</button>
+          </Link>
         </div>
-      </div>
-      ))}
-
-      {/* Filtragem */}
-      <div className={styles.filtroContainer}>
-        <h3 className={styles.filtroTitulo}>Filtrar por ID</h3>
-        <select
-          id="filtro"
-          name="iniciativa"
-          onChange={filtragem}
-          value={selectedId}
-          className={styles.select}
-        >
-          <option key="Todos">Todos</option>
-          {iniciativas.map((iniciativa) => (
-            <option key={iniciativa.id_iniciativas}>{iniciativa.id_iniciativas}</option>
-          ))}
-        </select>
       </div>
     </div>
   );

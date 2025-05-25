@@ -2,8 +2,11 @@
 import Link from "next/link";
 import styles from "./PaginaObjetivos.module.css";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation"; // para Next.js 13+
 
 export default function PaginaObjetivos() {
+  const router = useRouter();
+
   // Criação do estado para armazenar os Objetivos
   const [objetivos, setObjetivos] = useState([]);
   const [selectedId, setSelectedId] = useState("Todos");
@@ -73,78 +76,78 @@ export default function PaginaObjetivos() {
 
   return (
     <div className="fundo">
-      <h1 className={styles.objetivos}>Objetivos</h1>
-
-      <Link href="/CadastroObjetivos">
-        <button className={styles.add_button}>+</button>
-      </Link>
-
-      <strong>
-        <p className={styles.add_obj}>Adicionar Objetivo</p>
-      </strong>
-
-      {/* Map para cada Objetivo*/}
-      {objetivos.filter((objetivo) => selectedId === "Todos" || objetivo.id === Number(selectedId)).map((objetivo) => (
-      <div className={styles.card} key={objetivo.id}>
-        <div className={styles.header}>
-          <div className={styles.buttons}>
-            <Link href="/AtualizarObjetivos"><button>Editar</button></Link>
-            <button onClick={() => chamarAPIDeleteObjetivo(objetivo.id)}>Excluir</button>
-          </div>
+      <div className={styles.objetivosPage}>
+        <div className={styles.tituloArea}>
+          <h1 className={styles.tit}>Objetivos</h1>
         </div>
-        <strong>ID: </strong>{objetivo.id}
-        <div className={styles.objective_title}>
-          {objetivo.titulo} <span className="percentage">{objetivo.porcentagem_conclusao_obj}%</span>
-        </div>
-        <div className={styles.progress_bar_obj}>
-          <div className={styles.progress} style={{ width: `${objetivo.porcentagem_conclusao_obj}%` }}></div>
-        </div>
-        {objetivo.resultadosChaves.map((resultadoChave) => (
-          <div className={styles.kr} key={resultadoChave.id_kr}>
-            <div className={styles.kr_titulo}>
-              {resultadoChave.descricao} <span> {resultadoChave.meta}</span>{" "}
-              <span className={styles.porcentagem_kr}>{resultadoChave.porcentagem_conclusao_kr}%</span>
-            </div>
-            <div className={styles.progress_bar_kr}>
-              <div className={styles.progress} style={{ width: `${resultadoChave.porcentagem_conclusao_kr}%` }}></div>
-            </div>
-            <ul className={styles.lista_bola}>
-             {resultadoChave.iniciativas.map((iniciativas) => (
-              <li className={styles.lista_num} key={iniciativas.id_iniciativas}>
-                <p className={styles.ini_titulo}>-{iniciativas.titulo}</p>
-                <span className={styles.porcentagem_ini}>{iniciativas.porcentagem_conclusao_iniciativa}%</span>
-                <div className={styles.progress_bar_ini}>
-                  <div className={styles.progress} style={{ width: `${iniciativas.porcentagem_conclusao_iniciativa}%` }}></div>
-                </div>
-                {/* Campo adicional para desassociar uma iniciativa */}
-                <div className={styles.button_desa}>
-                  <button onClick={() => chamarAPIDesassociarKR(objetivo.id, resultadoChave.id_kr)}>Desassociar</button>
-                </div>
-              </li>
+        <div className={styles.areaConteudo}>
+          <div className={styles.filtroContainer}>
+            <label htmlFor="filtroId" className={styles.filtroTitulo}>Filtrar por ID:</label>
+            <select id="filtroId" className={styles.select} value={selectedId} onChange={filtragem}>
+              <option value="Todos">Todos</option>
+              {objetivos.map(obj => (
+                <option key={obj.id} value={obj.id}>{obj.id}</option>
               ))}
-          </ul>
+            </select>
           </div>
-        ))}
-      </div>
-    ))}
-      {/* Filtragem */}
-        <div className={styles.filtroContainer}>
-          <h3 className={styles.filtroTitulo}>Filtrar por ID</h3>
-          <select
-            id="filtro"
-            name="objetivo"
-            onChange={filtragem}
-            value={selectedId}
-            className={styles.select}
+          <div className={styles.cardsColuna}>
+            {/* Map para cada Objetivo*/}
+            {objetivos.filter((objetivo) => selectedId === "Todos" || objetivo.id === Number(selectedId)).map((objetivo) => (
+            <div className={styles.card} key={objetivo.id}>
+              <div className={styles.header}>
+                <div className={styles.buttons}>
+                  <Link href="/AtualizarObjetivos"><button>Editar</button></Link>
+                  <button onClick={() => chamarAPIDeleteObjetivo(objetivo.id)}>Excluir</button>
+                </div>
+              </div>
+              <div>
+  <span className={styles.idLabel}>ID:</span>
+  <span className={styles.idValue}>{objetivo.id}</span>
+</div>
+              <div className={styles.objective_title}>
+                {objetivo.titulo} <span className="percentage">{objetivo.porcentagem_conclusao_obj}%</span>
+              </div>
+              <div className={styles.progress_bar_obj}>
+                <div className={styles.progress} style={{ width: `${objetivo.porcentagem_conclusao_obj}%` }}></div>
+              </div>
+              {objetivo.resultadosChaves.map((resultadoChave) => (
+                <div className={styles.kr} key={resultadoChave.id_kr}>
+                  <div className={styles.kr_titulo}>
+                    {resultadoChave.descricao} <span> {resultadoChave.meta}</span>{" "}
+                    <span className={styles.porcentagem_kr}>{resultadoChave.porcentagem_conclusao_kr}%</span>
+                  </div>
+                  <div className={styles.progress_bar_kr}>
+                    <div className={styles.progress} style={{ width: `${resultadoChave.porcentagem_conclusao_kr}%` }}></div>
+                  </div>
+                  <ul className={styles.lista_bola}>
+                   {resultadoChave.iniciativas.map((iniciativas) => (
+                    <li className={styles.lista_num} key={iniciativas.id_iniciativas}>
+                      <p className={styles.ini_titulo}>-{iniciativas.titulo}</p>
+                      <span className={styles.porcentagem_ini}>{iniciativas.porcentagem_conclusao_iniciativa}%</span>
+                      <div className={styles.progress_bar_ini}>
+                        <div className={styles.progress} style={{ width: `${iniciativas.porcentagem_conclusao_iniciativa}%` }}></div>
+                      </div>
+                      {/* Campo adicional para desassociar uma iniciativa */}
+                      <div className={styles.button_desa}>
+                        <button onClick={() => chamarAPIDesassociarKR(objetivo.id, resultadoChave.id_kr)}>Desassociar</button>
+                      </div>
+                    </li>
+                    ))}
+                </ul>
+                </div>
+              ))}
+            </div>
+          ))}
+          </div>
+          <button
+            className={styles.add_button}
+            title="Adicionar objetivo"
+            onClick={() => router.push("/CadastroObjetivos")}
           >
-            <option key="Todos" value="Todos">Todos</option>
-            {objetivos.map((objetivo) => (
-              <option key={objetivo.id} value={objetivo.id}>
-                {objetivo.id}
-              </option>
-            ))}
-          </select>
+            +
+          </button>
         </div>
+      </div>
     </div>
   );
 }

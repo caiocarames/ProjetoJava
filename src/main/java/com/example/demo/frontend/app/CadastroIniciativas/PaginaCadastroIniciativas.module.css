@@ -1,50 +1,91 @@
-.iniciativas{
+.iniciativas {
   text-align: center;
+  margin-top: 2.5rem;
+  color: #222;
 }
+
 .formulario {
-  background-color: #f9f9f9;
-  padding: 2rem;
-  border-radius: 12px;
-  max-width: 400px;
+  background: #fff;
+  padding: 2.5rem 2.5rem 2rem 2.5rem;
+  border-radius: 14px;
+  max-width: 520px;
   margin: 40px auto;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.3rem;
+  transition: all 0.3s;
 }
 
 .titulo {
-  font-size: 1.5rem;
+  font-size: 2rem;
   text-align: center;
-  margin-bottom: 1rem;
-  color: #333;
+  margin-bottom: 0.5rem;
+  color: #1976d2;
+  font-weight: 700;
 }
 
-
 .input {
-  padding: 0.8rem 1rem;
-  border: 1px solid #ccc;
+  padding: 1rem;
+  border: 1px solid #bdbdbd;
   border-radius: 8px;
-  font-size: 1rem;
-  transition: border 0.3s;
+  font-size: 1.08rem;
+  width: 100%;
+  background: #f7f8fa;
+  transition: border-color 0.3s, background 0.3s;
 }
 
 .input:focus {
-  border-color: #0070f3;
+  border-color: #1976d2;
   outline: none;
+  background: #fff;
+  box-shadow: 0 0 0 2px #e3f2fd;
 }
 
 .botao {
-  background-color: #0070f3;
-  color: white;
-  padding: 0.9rem;
+  background: #4caf50;
+  color: #fff;
+  padding: 1rem;
   border: none;
   border-radius: 8px;
-  font-size: 1rem;
+  font-size: 1.08rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background 0.2s, transform 0.15s;
+  margin-top: 0.5rem;
 }
 
 .botao:hover {
-  background-color: #005ec4;
+  background: #388e3c;
+  transform: translateY(-2px);
+}
+
+.botao:active {
+  transform: scale(0.98);
+}
+
+@media (max-width: 900px) {
+  .formulario {
+    max-width: 98vw;
+    padding: 1.5rem 0.7rem 1rem 0.7rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .iniciativas {
+    margin-top: 1.2rem;
+    font-size: 1.3rem;
+  }
+  .formulario {
+    padding: 1rem 0.3rem 0.7rem 0.3rem;
+    border-radius: 8px;
+    gap: 0.8rem;
+  }
+  .titulo {
+    font-size: 1.3rem;
+  }
+  .input, .botao {
+    font-size: 0.98rem;
+    padding: 0.8rem;
+  }
 }
